@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android Project")
+                    Greeting("Discplanner")
                     CanvasSample()
                 }
             }
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Start $name!")
+    Text(text = "$name")
 }
 
 @Preview(showBackground = true)
@@ -57,14 +58,14 @@ private fun CanvasSample() {
     Canvas(
         modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(1f)
+            .aspectRatio(1f).background(Color.Yellow)
     ) {
         val center = size.width / 2
         val outerRadius = center * .9f
         val innerRadius = outerRadius * .1f
 
 
-        for (i in 0..360 step 30) {
+        for (i in 0..360 step 90) {
             val xStart = center + (innerRadius * cos(i * DEG_TO_RAD)).toFloat()
             val yStart = center + (innerRadius * sin(i * DEG_TO_RAD)).toFloat()
 
@@ -75,9 +76,10 @@ private fun CanvasSample() {
                 Color.Black,
                 start = Offset(xStart, yStart),
                 end = Offset(xEnd, yEnd),
-                strokeWidth = 3.dp.toPx(),
-                cap = StrokeCap.Butt
+                strokeWidth = 10.dp.toPx(),
+                cap = StrokeCap.Butt,
             )
+            Color.White
         }
     }
 }
